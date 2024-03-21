@@ -1,6 +1,7 @@
 import time
 import random
 from pyrogram import filters
+from VIPMUSIC.plugins.play.playlist import del_plist_msg
 from pyrogram.enums import ChatType
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
@@ -43,12 +44,19 @@ YUMI_PICS = [
 
 
 
-@app.on_message(filters.command(["mstart"]) & filters.private & ~BANNED_USERS)
+@app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
     await add_served_user(message.from_user.id)
     if len(message.text.split()) > 1:
         name = message.text.split(None, 1)[1]
+        if name == "verify":
+            await message.reply_text(f"ʜᴇʏ {mention_with_link},\nᴛʜᴀɴᴋs ғᴏʀ ᴠᴇʀɪғʏɪɴɢ ʏᴏᴜʀsᴇʟғ, ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ɢᴏ ʙᴀᴄᴋ ᴀɴᴅ sᴛᴀʀᴛ ᴜsɪɴɢ ᴍᴇ.", disable_web_page_preview=True)
+
+        if name[0:3] == "del":
+            await del_plist_msg(client=client, message=message, _=_)
+
+
         if name[0:4] == "help":
             keyboard = help_pannel(_)
             return await message.reply_photo(
@@ -115,7 +123,7 @@ async def start_pm(client, message: Message, _):
             )
 
 
-@app.on_message(filters.command(["mstart"]) & filters.group & ~BANNED_USERS)
+@app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
