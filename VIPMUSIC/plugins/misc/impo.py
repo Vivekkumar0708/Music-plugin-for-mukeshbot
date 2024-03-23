@@ -66,10 +66,10 @@ async def chk_usr(_, message: Message):
         or first_name != message.from_user.first_name
         or lastname_before != message.from_user.last_name
     ):
-        msg += f"""User **{message.from_user.mention}**\n"""
+        msg += f"""User {message.from_user.mention}\n"""
     if usernamebefore != message.from_user.username:
         usernameafter = message.from_user.username or "NO USERNAME"
-        msg += """**changed her username from** {} **to** {}\n""".format(usernamebefore, usernameafter)
+        msg += """changed her username from {} to {}\n""".format(usernamebefore, usernameafter)
         await add_userdata(
             chat_id,
             message.from_user.id,
@@ -78,7 +78,7 @@ async def chk_usr(_, message: Message):
             message.from_user.last_name,
         )
     if first_name != message.from_user.first_name:
-        msg += """**changed her first name from** {} **to** {}\n""".format(first_name, message.from_user.first_name)
+        msg += """changed her first name from {} to {}\n""".format(first_name, message.from_user.first_name)
         await add_userdata(
             chat_id,
             message.from_user.id,
@@ -88,7 +88,7 @@ async def chk_usr(_, message: Message):
         )
     if lastname_before != message.from_user.last_name:
         lastname_after = message.from_user.last_name or "NO LAST NAME"
-        msg += """**changed her last name from** {} **to** {}\n""".format(lastname_before, lastname_after)
+        msg += """changed her last name from {} to {}\n""".format(lastname_before, lastname_after)
         await add_userdata(
             chat_id,
             message.from_user.id,
