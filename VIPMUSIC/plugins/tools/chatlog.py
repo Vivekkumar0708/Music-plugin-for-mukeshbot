@@ -5,9 +5,6 @@ from pyrogram.types import(InlineKeyboardButton, InlineKeyboardMarkup, InputMedi
 from config import LOGGER_ID as LOG_GROUP_ID
 from VIPMUSIC import app  
 
-
-
-
 @app.on_message(filters.new_chat_members, group=2)
 async def join_watcher(_, message):    
     chat = message.chat
