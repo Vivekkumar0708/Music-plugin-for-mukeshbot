@@ -109,7 +109,7 @@ def help_back_markup(_):
     return upl
 
 
-def fun_page():
+def fun_page(_):
     upl = InlineKeyboardMarkup(
         [
             [
