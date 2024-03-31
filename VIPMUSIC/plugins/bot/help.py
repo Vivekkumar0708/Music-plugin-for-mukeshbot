@@ -52,7 +52,7 @@ async def help_com_group(client, message: Message, _):
     await message.reply_text(_["help_2"], reply_markup=InlineKeyboardMarkup(keyboard))
 
 @app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
-@LanguageStart
+@languageCB
 async def funscb(client, CallbackQuery, _):
     next_page = fun_page(_)
     try:
