@@ -35,7 +35,6 @@ from VIPMUSIC.utils.inline.settings import (
     vote_mode_markup,
 )
 from VIPMUSIC.utils.inline.start import private_panel
-from VIPMUSIC.utils.inline.help import fun_page
 from config import BANNED_USERS, OWNER_ID
 
 
@@ -82,12 +81,21 @@ def fun_pageg():
     )
     return upl
 
-@Client.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
-async def funscb(_, client, callback_query):
-    fun_pagec = fun_pageg()
-    await callback_query.message.edit_message_media(
-        media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
-        reply_markup=fun_pagec
+@app.on_callback_query(filters.regex("funsource"))
+async def gib_repository_callback(_, callback_query):
+    await callback_query.edit_message_media(
+                media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                                            text="ʙᴀᴄᴋ",
+                    callback_data=f"settings_back_helper",
+                    ),
+              
+                ]
+            ]
+        )
     )
     
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
