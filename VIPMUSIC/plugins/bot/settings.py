@@ -67,7 +67,7 @@ async def settings_cb(client, CallbackQuery, _):
     )
 
 @app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
-@LanguageStart
+@language
 async def funscb(client, CallbackQuery, _):
     fun_page = fun_page(_)
     try:
