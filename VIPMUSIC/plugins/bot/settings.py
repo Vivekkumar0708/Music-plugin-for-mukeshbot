@@ -68,7 +68,7 @@ async def settings_cb(client, CallbackQuery, _):
         reply_markup=InlineKeyboardMarkup(buttons),
     )
 
-def fun_page():
+def fun_pageg():
     upl = InlineKeyboardMarkup(
         [
             [
@@ -84,7 +84,7 @@ def fun_page():
 
 @Client.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
 async def funscb(_, client, callback_query):
-    fun_pagec = fun_page()
+    fun_pagec = fun_pageg()
     await callback_query.message.edit_message_media(
         media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
         reply_markup=fun_pagec
