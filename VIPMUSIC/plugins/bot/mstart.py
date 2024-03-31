@@ -110,7 +110,7 @@ async def start_pm(client, message: Message, _):
 
 @app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
 @LanguageStart
-async def funs(client, CallbackQuery, _):
+async def funscb(client, CallbackQuery, _):
     next_page = fun_page(_)
     try:
         await CallbackQuery.message.edit_message_media(
