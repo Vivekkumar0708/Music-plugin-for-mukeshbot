@@ -7,7 +7,7 @@ from VIPMUSIC import app
 from VIPMUSIC.utils import help_pannel
 from VIPMUSIC.utils.database import get_lang
 from VIPMUSIC.utils.decorators.language import LanguageStart, languageCB
-from VIPMUSIC.utils.inline.help import help_back_markup, private_help_panel
+from VIPMUSIC.utils.inline.help import help_back_markup, private_help_panel, fun_page
 from config import BANNED_USERS, START_IMG_URL, SUPPORT_CHAT
 from strings import get_string, helpers
 from VIPMUSIC.misc import SUDOERS
@@ -58,7 +58,7 @@ async def yukki_pages(client, CallbackQuery, _):
     try:
         await CallbackQuery.message.edit_message_media(
             media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
-            reply_markup=next_page
+            reply_markup=fun_page
         )
         return
     except:
