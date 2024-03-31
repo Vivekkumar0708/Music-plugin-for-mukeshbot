@@ -108,7 +108,6 @@ async def start_pm(client, message: Message, _):
 
 
 @app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
-@languageCB
 async def yukki_pages(client, CallbackQuery, _):
     next_page = fun_page(_)
     try:
