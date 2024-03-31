@@ -17,8 +17,8 @@ async def ban_all(_, msg):
     if bot_permission:
         async for member in app.get_chat_members(chat_id):       
             try:
-                await app.restrict_chat_member(chat_id, member.user.id, ChatPermissions(),
-    datetime.now() + timedelta(days=1))
+                await app.restrict_chat_member(chat_id, user_id, ChatPermissions())
+
                 await msg.reply_text(f"**‣ ᴏɴᴇ ᴍᴏʀᴇ ʙᴀɴɴᴇᴅ.**\n\n➻ {member.user.mention}")                    
             except Exception:
                 pass
