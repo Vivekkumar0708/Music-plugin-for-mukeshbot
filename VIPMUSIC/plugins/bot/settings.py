@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.errors import MessageNotModified
+from pyrogram.types import InputMediaVideo
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -67,32 +68,19 @@ async def settings_cb(client, CallbackQuery, _):
         reply_markup=InlineKeyboardMarkup(buttons),
     )
 
-def fun_pageg():
-    upl = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(
-                    text="ʙᴀᴄᴋ",
-                    callback_data=f"settings_back_helper",
-                ),
-            ],
-
-        ]
-    )
-    return upl
-
 @app.on_callback_query(filters.regex("funsource"))
 async def gib_repository_callback(_, callback_query):
     await callback_query.edit_message_media(
-                media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
+        media=InputMediaVideo(
+            media="https://graph.org/file/573c2c97b7d272724f394.mp4"
+        ),
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                                            text="ʙᴀᴄᴋ",
-                    callback_data=f"settings_back_helper",
-                    ),
-              
+                        text="ʙᴀᴄᴋ",
+                        callback_data="settings_back_helper"
+                    )
                 ]
             ]
         )
