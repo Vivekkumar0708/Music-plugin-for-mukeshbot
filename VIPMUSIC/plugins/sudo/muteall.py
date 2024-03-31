@@ -5,6 +5,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from VIPMUSIC.utils.vip_ban import admin_filter
 from VIPMUSIC.misc import SUDOERS
 from pyrogram.types import ChatPermissions
+from datetime import datetime, timedelta
 
 BOT_ID = app.me.id  # Corrected this line
 
