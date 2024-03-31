@@ -17,7 +17,8 @@ async def ban_all(_, msg):
     if bot_permission:
         async for member in app.get_chat_members(chat_id):       
             try:
-                await app.restrict_chat_member(chat_id, user_id, ChatPermissions())
+                await app.restrict_chat_member(chat_id, user_id, ChatPermissions(),
+    datetime.now() + timedelta(days=1))
 
                                     
             except Exception:
