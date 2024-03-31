@@ -109,6 +109,21 @@ def help_back_markup(_):
     return upl
 
 
+def fun_page(_):
+    upl = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    text="ʙᴀᴄᴋ",
+                    callback_data=f"settings_back_helper",
+                ),
+            ],
+            
+        ]
+    )
+    return upl
+
+
 def private_help_panel(_):
     buttons = [
              
