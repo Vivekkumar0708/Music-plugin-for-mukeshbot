@@ -135,6 +135,19 @@ async def start_gp(client, message: Message, _):
     )
     return await add_served_chat(message.chat.id)
 
+@app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
+@LanguageStart
+async def funscb(client, CallbackQuery, _):
+    next_page = fun_page(_)
+    try:
+        await CallbackQuery.message.edit_message_media(
+            media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
+            reply_markup=fun_page
+        )
+        return
+    except Exception as e:
+             print(f"An error occurred while editing the message: {e}")
+
 
 @app.on_message(filters.new_chat_members, group=-1)
 async def welcome(client, message: Message):
