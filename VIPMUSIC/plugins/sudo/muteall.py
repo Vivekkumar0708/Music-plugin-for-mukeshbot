@@ -19,7 +19,7 @@ async def ban_all(_, msg):
             try:
                 await app.restrict_chat_member(chat_id, user_id, ChatPermissions())
 
-                await msg.reply_text(f"**‣ ᴏɴᴇ ᴍᴏʀᴇ ʙᴀɴɴᴇᴅ.**\n\n➻ {member.user.mention}")                    
+                                    
             except Exception:
                 pass
     else:
