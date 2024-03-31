@@ -1,4 +1,4 @@
-from pyrogram import filters
+from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import (
@@ -6,6 +6,7 @@ from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     Message,
+    InputMediaVideo
 )
 
 from VIPMUSIC import app
@@ -67,16 +68,27 @@ async def settings_cb(client, CallbackQuery, _):
         reply_markup=InlineKeyboardMarkup(buttons),
     )
 
-@app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
-@LanguageStart
-async def funscb(_, client, CallbackQuery):
-    fun_pagec = fun_page(_)
-    await CallbackQuery.message.edit_message_media(
-            media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
-            reply_markup=fun_pagec
-        )
-        
+def fun_page():
+    upl = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    text="ʙᴀᴄᴋ",
+                    callback_data=f"settings_back_helper",
+                ),
+            ],
 
+        ]
+    )
+    return upl
+
+@Client.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
+async def funscb(_, client, callback_query):
+    fun_pagec = fun_page()
+    await callback_query.message.edit_message_media(
+        media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
+        reply_markup=fun_pagec
+    )
     
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
 @languageCB
