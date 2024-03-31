@@ -51,20 +51,6 @@ async def help_com_group(client, message: Message, _):
     keyboard = private_help_panel(_)
     await message.reply_text(_["help_2"], reply_markup=InlineKeyboardMarkup(keyboard))
 
-@app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
-@languageCB
-async def yukki_pages(client, CallbackQuery, _):
-    next_page = fun_page(_)
-    try:
-        await CallbackQuery.message.edit_message_media(
-            media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
-            reply_markup=fun_page
-        )
-        return
-    except:
-        return
-
-
 @app.on_callback_query(filters.regex("help_callback") & ~BANNED_USERS)
 @languageCB
 async def helper_cb(client, CallbackQuery, _):
