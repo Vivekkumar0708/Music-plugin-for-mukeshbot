@@ -20,7 +20,7 @@ from VIPMUSIC.utils.database import (
 )
 from VIPMUSIC.utils.decorators.language import LanguageStart
 from VIPMUSIC.utils.formatters import get_readable_time
-from VIPMUSIC.utils.inline import help_pannel, private_panel, start_panel
+from VIPMUSIC.utils.inline import help_pannel, private_panel, start_panel, fun_page
 from config import BANNED_USERS
 from strings import get_string
 
@@ -104,3 +104,17 @@ async def start_pm(client, message: Message, _):
                     chat_id=config.LOGGER_ID,
                     text=f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}",
 )
+
+
+@app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
+@languageCB
+async def yukki_pages(client, CallbackQuery, _):
+    next_page = fun_page(_)
+    try:
+        await CallbackQuery.message.edit_message_media(
+            media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
+            reply_markup=fun_page
+        )
+        return
+    except:
+        return
