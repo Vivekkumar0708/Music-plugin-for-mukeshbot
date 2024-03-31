@@ -36,7 +36,7 @@ async def start_pm(client, message: Message, _):
     user_first_name = message.from_user.first_name
     username = message.from_user.username
 
-    # Generate the mention with link
+
     mention_with_link = f"[{user_first_name}](https://t.me/{username})"
     await add_served_user(message.from_user.id)
     if len(message.text.split()) > 1:
