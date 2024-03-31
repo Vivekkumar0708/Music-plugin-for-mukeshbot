@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.enums import ChatType
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import InputMediaVideo
+from pyrogram.types import InputMediaPhoto
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
@@ -36,7 +37,7 @@ from VIPMUSIC.utils.inline.settings import (
     vote_mode_markup,
 )
 from VIPMUSIC.utils.inline.start import private_panel
-from config import BANNED_USERS, OWNER_ID
+from config import BANNED_USERS, OWNER_ID, START_IMG_URL
 
 
 @app.on_message(
@@ -86,6 +87,31 @@ async def gib_repository_callback(_, callback_query):
         )
     )
     
+
+@app.on_callback_query(filters.regex("funsourcehome") & ~BANNED_USERS)
+@languageCB
+async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
+    try:
+        await CallbackQuery.answer()
+    except:
+        pass
+    if CallbackQuery.message.chat.type == ChatType.PRIVATE:
+        await app.resolve_peer(OWNER_ID)
+        OWNER = OWNER_ID
+        buttons = private_panel(_)
+        return await callback_query.edit_message_media(
+        media=InputMediaPhoto(
+            media=START_IMG_URL,
+caption=_["start_2"].format(CallbackQuery.from_user.mention, app.mention),
+            reply_markup=InlineKeyboardMarkup(buttons),
+        )
+    else:
+        buttons = setting_markup(_)
+        return await CallbackQuery.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(buttons)
+        )
+
+
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
 @languageCB
 async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
