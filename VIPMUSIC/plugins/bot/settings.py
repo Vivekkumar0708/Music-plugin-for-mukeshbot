@@ -33,7 +33,8 @@ from VIPMUSIC.utils.inline.settings import (
     setting_markup,
     vote_mode_markup,
 )
-from VIPMUSIC.utils.inline.start import private_panel, fun_page
+from VIPMUSIC.utils.inline.start import private_panel
+from VIPMUSIC.utils.inline.help import fun_page
 from config import BANNED_USERS, OWNER_ID
 
 
