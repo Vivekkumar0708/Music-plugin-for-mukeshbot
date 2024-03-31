@@ -70,15 +70,12 @@ async def settings_cb(client, CallbackQuery, _):
 @app.on_callback_query(filters.regex("funsource") & ~BANNED_USERS)
 @LanguageStart
 async def funscb(_, client, CallbackQuery):
-    try:
-        fun_pagec = fun_page(_)
-        await CallbackQuery.message.edit_message_media(
+    fun_pagec = fun_page(_)
+    await CallbackQuery.message.edit_message_media(
             media=InputMediaVideo(video="https://graph.org/file/573c2c97b7d272724f394.mp4"),
             reply_markup=fun_pagec
         )
-        return
-    except Exception as e:
-             print(f"An error occurred while editing the message: {e}")
+        
 
     
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
