@@ -90,27 +90,23 @@ async def gib_repository_callback(_, callback_query):
 
 @app.on_callback_query(filters.regex("funsourcehome") & ~BANNED_USERS)
 @languageCB
-async def settings_back_markup(client, callback_query, _):
+async def funsourcehome_back_markup(client, CallbackQuery: CallbackQuery, _):
     try:
-        await callback_query.answer()
+        await CallbackQuery.answer()
     except:
         pass
-    if callback_query.message.chat.type == ChatType.PRIVATE:
-        await app.resolve_peer(OWNER_ID)
-        OWNER = OWNER_ID
-        buttons = private_panel(_)
-        await callback_query.edit_message_media(
-            media=InputMediaPhoto(
-                media=START_IMG_URL,
-                caption=_["start_2"].format(callback_query.from_user.mention, app.mention),
-                reply_markup=InlineKeyboardMarkup(buttons),
-            )
-        )
-    else:
-        buttons = setting_markup(_)
-        await callback_query.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(buttons)
-        )
+    if CallbackQuery.message.chat.type == ChatType.PRIVATE:
+        await app.resolve_peer(OWNER_ID[0])
+        OWNER = OWNER_ID[0]
+        Image = config.START_IMG_URL
+        buttons = private_panel(_, app.username, OWNER)
+        await CallbackQuery.edit_message_media(
+            InputMediaPhoto(media=Image,
+                caption=_["start_2"].format(
+                        app.mention ),
+        ))
+        return await CallbackQuery.edit_message_reply_markup(
+            reply_markup=InlineKeyboardMarkup(buttons) )
 
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
 @languageCB
