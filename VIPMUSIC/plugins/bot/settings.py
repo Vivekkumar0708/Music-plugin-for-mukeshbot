@@ -102,11 +102,10 @@ async def funsourcehome_back_markup(client, CallbackQuery: CallbackQuery, _):
         buttons = private_panel(_, app.username, OWNER)
         await CallbackQuery.edit_message_media(
             InputMediaPhoto(media=Image,
-                caption=_["start_2"].format(CallbackQuery.from_user.mention,
-                        app.mention ),
+                caption=_["start_2"],
         ))
         return await CallbackQuery.edit_message_reply_markup(
-            reply_markup=InlineKeyboardMarkup(buttons) )
+            reply_markup=InlineKeyboardMarkup(buttons))
 
 @app.on_callback_query(filters.regex("settingsback_helper") & ~BANNED_USERS)
 @languageCB
