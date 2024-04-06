@@ -9,7 +9,7 @@ from VIPMUSIC import app
 import asyncio
 from config import LOG_GROUP_ID
 
-COMMAND_HANDLER = ". /".split()
+#COMMAND_HANDLER = ". /".split()
 
 
 LOGGER = getLogger(__name__)
