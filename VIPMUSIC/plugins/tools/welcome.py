@@ -33,7 +33,7 @@ async def rm_wlcm(chat_id : int):
     if chat: 
         return await wlcm.delete_one({"chat_id" : chat_id})
 
-wlcm = WelDatabase()
+#wlcm = WelDatabase()
 
 
 class temp:
