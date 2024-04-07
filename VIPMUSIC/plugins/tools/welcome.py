@@ -7,7 +7,7 @@ from VIPMUSIC import LOGGER
 from VIPMUSIC import app 
 
 import asyncio
-from config import LOG_GROUP_ID
+from config import LOGGER_ID as LOG_GROUP_ID
 
 #COMMAND_HANDLER = ". /".split()
 
