@@ -10,24 +10,28 @@ import asyncio
 from config import LOGGER_ID as LOG_GROUP_ID
 
 #COMMAND_HANDLER = ". /".split()
+from async_pymongo import AsyncClient
+from config import *
 
+
+
+DBNAME = "CUTIEXMUSICBOTss"
+
+mongo = AsyncClient(MONGO_DB_URI)
+dbname = mongo[DBNAME]
 
 LOGGER = getLogger(__name__)
 
-class WelDatabase:
-    def __init__(self):
-        self.data = {}
 
-    async def find_one(self, chat_id):
-        return chat_id in self.data
+wlcm = dbname["welcome"]
 
-    async def add_wlcm(self, chat_id):
-        if chat_id not in self.data:
-            self.data[chat_id] = {"state": "on"}  # Default state is "on"
+async def add_wlcm(chat_id : int):
+    return await wlcm.insert_one({"chat_id" : chat_id})
 
-    async def rm_wlcm(self, chat_id):
-        if chat_id in self.data:
-            del self.data[chat_id]
+async def rm_wlcm(chat_id : int):   
+    chat = await wlcm.find_one({"chat_id" : chat_id})
+    if chat: 
+        return await wlcm.delete_one({"chat_id" : chat_id})
 
 wlcm = WelDatabase()
 
