@@ -5,7 +5,7 @@ from pyrogram.types import *
 from logging import getLogger
 from VIPMUSIC import LOGGER
 from VIPMUSIC import app 
-
+import random
 import asyncio
 from config import LOGGER_ID as LOG_GROUP_ID
 
@@ -56,15 +56,20 @@ def welcomepic(pic, user, chat, id, uname):
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp)
     pfp = pfp.resize(
-        (1050, 1050)
+        (380, 380)
     ) 
+    # written by cute bachha 
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('VIPMUSIC/assets/font.ttf', size=80)
+    # random color s
+    c1 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    c2 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    c3 = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    font = ImageFont.truetype('VIPMUSIC/assets/font.ttf', size=50)
     font2 = ImageFont.truetype('VIPMUSIC/assets/font.ttf', size=90)
-    draw.text((1680, 850), f'NAME: {unidecode(user)}', fill=(255, 255, 255), font=font)
-    draw.text((1680, 1050), f'ID: {id}', fill=(255, 255, 255), font=font)
-    draw.text((1680, 1250), f"USERNAME : {uname}", fill=(255,255,255),font=font)
-    pfp_position = (408, 557)  
+    draw.text((750, 405), f'{unidecode(user)}', fill=c1, font=font)
+    draw.text((650, 500), f'{id}', fill=c2, font=font)
+    draw.text((850, 585), f"{uname}", fill=c3, font=font)
+    pfp_position = (94, 117)  
     background.paste(pfp, pfp_position, pfp)  
     background.save(
         f"downloads/welcome#{id}.png"
